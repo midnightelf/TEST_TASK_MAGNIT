@@ -24,13 +24,11 @@ class EmergencyRssController extends Controller
             $title = $item->first('title')->text();
             $date = $item->first('pubDate')->text();
             $content = $item->first('//yandex:full-text', Query::TYPE_XPATH)->text();
-            $image = $item->first('enclosure')->getAttribute('url');
 
             $items->push([
                 'title' => $title,
                 'date' => Carbon::create($date)->format("Y-m-d h:i:s"),
                 'content' => $content,
-                'image' => $image
             ]);
         }
 
